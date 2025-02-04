@@ -6,8 +6,8 @@ data class TedTalkDto(
     val title: String,
     val author: String?,
     val date: String,
-    val views: Int?,
-    val likes: Int,
+    val views: Long?,
+    val likes: Long,
     val link: String,
 )
 
