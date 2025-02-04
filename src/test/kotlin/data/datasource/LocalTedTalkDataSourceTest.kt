@@ -11,11 +11,11 @@ import kotlin.test.assertEquals
 class LocalTedTalkDataSourceTest {
 
     @InjectMockKs
-    lateinit var dataSource: LocalTedTalkDataSource
+    lateinit var dataSource: InMemoryTedTalkDataSource
 
     @BeforeTest
     fun setup() {
-        dataSource = LocalTedTalkDataSource()
+        dataSource = InMemoryTedTalkDataSource()
     }
 
     @Test

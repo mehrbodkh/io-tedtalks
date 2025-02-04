@@ -14,8 +14,7 @@ fun Application.configureRouting() {
     val service by inject<TedTalkService>()
     routing {
         get("/") {
-            service.run()
-            call.respondText("Hello World!")
+            call.respond(service.run())
         }
     }
 }

@@ -2,7 +2,7 @@ package com.mehrbod.data.datasource
 
 import com.mehrbod.data.model.TedTalkDto
 
-class LocalTedTalkDataSource : TedTalkDataSource {
+class InMemoryTedTalkDataSource : TedTalkDataSource {
     private val tedTalks: MutableList<TedTalkDto> = mutableListOf()
 
     override suspend fun fetchAll(): List<TedTalkDto> {

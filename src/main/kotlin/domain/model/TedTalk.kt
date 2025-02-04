@@ -1,7 +1,9 @@
 package com.mehrbod.domain.model
 
 import com.mehrbod.data.model.TedTalkDto
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class TedTalk(
     val title: String,
     val author: String?,
