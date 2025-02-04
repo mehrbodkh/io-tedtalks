@@ -4,6 +4,8 @@ koin-version = "3.5.6"
 kotlin-version = "2.1.10"
 ktor-version = "3.0.3"
 logback-version = "1.4.14"
+dataframe-version = "0.15.0"
+mockk-version = "1.13.16"
 
 [libraries]
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor-version" }
@@ -22,8 +24,11 @@ logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "lo
 ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor-version" }
 ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor-version" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin-version" }
+jetbrains-dataframe = { module = "org.jetbrains.kotlinx:dataframe", version.ref = "dataframe-version" }
+io-mockk = { module = "io.mockk:mockk", version.ref = "mockk-version" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor-version" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
+kotlin-jetbrains-dataframe = { id = "org.jetbrains.kotlinx.dataframe", version.ref = "dataframe-version" }
