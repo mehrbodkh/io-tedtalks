@@ -11,6 +11,16 @@ class TedTalkService(
     private val repository: TedTalkRepository
 ) {
     suspend fun run(): List<TedTalk> {
+        repository.remove(
+            TedTalk(
+                "Mehrbod",
+                "Mehrbod",
+                "12-12-2012",
+                1000L,
+                1000L,
+                "https://google.com/"
+            )
+        )
         return repository.getTedTalks()
     }
 

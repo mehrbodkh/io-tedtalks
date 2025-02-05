@@ -21,7 +21,7 @@ class LocalTedTalkDataSourceTest {
     @Test
     fun `should save data`() = runTest {
         val mockedData = listOf<TedTalkDto>(mockk(), mockk())
-        dataSource.save(mockedData)
+        dataSource.saveBatch(mockedData)
 
         assertEquals(mockedData, dataSource.fetchAll())
     }
@@ -30,8 +30,8 @@ class LocalTedTalkDataSourceTest {
     fun `should save new data over old data`() = runTest {
         val oldMockedData = listOf<TedTalkDto>(mockk(), mockk())
         val newMockedData = listOf<TedTalkDto>(mockk(), mockk(), mockk())
-        dataSource.save(oldMockedData)
-        dataSource.save(newMockedData)
+        dataSource.saveBatch(oldMockedData)
+        dataSource.saveBatch(newMockedData)
 
         assertEquals(newMockedData, dataSource.fetchAll())
     }

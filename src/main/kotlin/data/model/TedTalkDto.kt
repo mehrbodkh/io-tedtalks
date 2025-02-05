@@ -3,12 +3,12 @@ package com.mehrbod.data.model
 import com.mehrbod.domain.model.TedTalk
 
 data class TedTalkDto(
-    val title: String,
-    val author: String?,
-    val date: String,
-    val views: Long?,
-    val likes: Long,
-    val link: String,
+    var title: String,
+    var author: String?,
+    var date: String,
+    var views: Long?,
+    var likes: Long,
+    var link: String,
 )
 
 fun TedTalkDto.convertToDomainModel() = TedTalk(
