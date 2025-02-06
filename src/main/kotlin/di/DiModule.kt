@@ -7,19 +7,17 @@ import com.mehrbod.data.repository.TedTalkRepository
 import com.mehrbod.domain.TedTalkService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val diModule = module {
-    single<DataFrame.Companion> { DataFrame.Companion }
     single<CoroutineDispatcher>(named("io_dispatcher")) { Dispatchers.IO }
     single<CoroutineDispatcher>(named("default_dispatcher")) { Dispatchers.Default }
     single<TedTalkDataSource>(named("in_memory")) { InMemoryTedTalkDataSource() }
     single<TedTalkDataSource>(named("persistent")) {
         PersistentTedTalkDataSource(
-            get(),
-            get(qualifier = named("io_dispatcher"))
+            get(qualifier = named("io_dispatcher")),
+            get()
         )
     }
     single { TedTalkRepository(get(qualifier = named("in_memory")), get(qualifier = named("persistent"))) }

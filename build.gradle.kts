@@ -23,9 +23,11 @@ repositories {
 dependencies {
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.swagger)
+    implementation("com.jsoizo:kotlin-csv-jvm:1.10.0") // for JVM platform
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)
     implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.server.openapi)
     implementation(libs.ktor.server.default.headers)
@@ -35,7 +37,6 @@ dependencies {
     implementation(libs.ktor.server.netty)
     implementation(libs.logback.classic)
     implementation(libs.ktor.server.config.yaml)
-    implementation(libs.jetbrains.dataframe)
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
     testImplementation(libs.io.mockk)

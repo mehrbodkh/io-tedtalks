@@ -10,7 +10,6 @@ class InMemoryTedTalkDataSource : TedTalkDataSource {
     }
 
     override suspend fun saveBatch(tedTalks: List<TedTalkDto>) {
-        this.tedTalks.clear()
         this.tedTalks.addAll(tedTalks)
     }
 
@@ -19,7 +18,11 @@ class InMemoryTedTalkDataSource : TedTalkDataSource {
     }
 
     override suspend fun remove(tedTalkDto: TedTalkDto) {
-        this.tedTalks.remove(tedTalkDto)
+        if (tedTalks.contains(tedTalkDto)) {
+            this.tedTalks.remove(tedTalkDto)
+        } else {
+            throw RuntimeException("Talk doesn't exist")
+        }
     }
 
     override suspend fun update(oldTedTalkDto: TedTalkDto, newTedTalkDto: TedTalkDto) {
