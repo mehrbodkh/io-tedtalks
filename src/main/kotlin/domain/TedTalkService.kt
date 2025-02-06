@@ -2,13 +2,16 @@ package com.mehrbod.domain
 
 import com.mehrbod.data.repository.TedTalkRepository
 import com.mehrbod.domain.model.TedTalk
-import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.map
-import org.jetbrains.kotlinx.dataframe.io.readCSV
-import java.net.URL
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.datetime.LocalDate
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalField
+import java.util.Locale
 
 class TedTalkService(
-    private val repository: TedTalkRepository
+    private val repository: TedTalkRepository,
+    private val defaultDispatcher: CoroutineDispatcher
 ) {
     suspend fun getTedTalks(authorsName: String?) = repository.getTedTalks()
         .filter { authorsName == null || it.author?.contains(authorsName, true) == true }
@@ -21,14 +24,29 @@ class TedTalkService(
         repository.remove(tedTalk)
     }
 
-    private fun readDataFromFile(fileName: String) = DataFrame.readCSV(fileName).map {
-        TedTalk(
-            it["title"] as String,
-            it["author"] as String?,
-            it["date"] as String,
-            (it["views"] as String?)?.toLongOrNull(),
-            it["likes"] as Long,
-            (it["link"] as URL).toString()
-        )
+    suspend fun getTopTalks(number: Int) = with(defaultDispatcher) {
+        repository
+            .getTedTalks()
+            .sortedByDescending { it.calculateInfluenceScore() }
+            .take(number)
     }
+
+    suspend fun getTopTalksPerYear() = with(defaultDispatcher) {
+        val formatter = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH)
+
+        repository
+            .getTedTalks()
+            .groupBy {
+                try {
+                    YearMonth.parse(it.date, formatter).year
+                } catch (e: Exception) {
+                    -1
+                }
+            }
+            .filter { it.key >= 0 }
+            .map { mapOf(it.key to it.value.maxBy { talks -> talks.calculateInfluenceScore() }) }
+    }
+
+
+    private fun TedTalk.calculateInfluenceScore() = (this.likes * (this.views ?: 1)) * 0.01
 }

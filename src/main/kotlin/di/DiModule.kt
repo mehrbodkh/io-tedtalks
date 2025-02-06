@@ -14,6 +14,7 @@ import org.koin.dsl.module
 val diModule = module {
     single<DataFrame.Companion> { DataFrame.Companion }
     single<CoroutineDispatcher>(named("io_dispatcher")) { Dispatchers.IO }
+    single<CoroutineDispatcher>(named("default_dispatcher")) { Dispatchers.Default }
     single<TedTalkDataSource>(named("in_memory")) { InMemoryTedTalkDataSource() }
     single<TedTalkDataSource>(named("persistent")) {
         PersistentTedTalkDataSource(
@@ -22,5 +23,5 @@ val diModule = module {
         )
     }
     single { TedTalkRepository(get(qualifier = named("in_memory")), get(qualifier = named("persistent"))) }
-    single { TedTalkService(get()) }
+    single { TedTalkService(get(), get(qualifier = named("default_dispatcher"))) }
 }
