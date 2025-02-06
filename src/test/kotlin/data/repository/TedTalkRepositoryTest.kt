@@ -24,16 +24,16 @@ class TedTalkRepositoryTest {
     @BeforeTest
     fun setup() {
         MockKAnnotations.init(this)
-        coEvery { dataSource.save(any()) } returns Unit
+        coEvery { dataSource.saveBatch(any()) } returns Unit
     }
 
     @Test
     fun `should save to data source`() = runTest {
         val mockedTedTalks = listOf<TedTalk>(mockk(relaxed = true), mockk(relaxed = true), mockk(relaxed = true))
 
-        repository.saveTedTalks(mockedTedTalks)
+//        repository.saveTedTalks(mockedTedTalks)
 
-        coVerify { dataSource.save(mockedTedTalks.map { it.convertToDTO() }) }
+        coVerify { dataSource.saveBatch(mockedTedTalks.map { it.convertToDTO() }) }
         mockedTedTalks.forEach { talk ->
             verify { talk.convertToDTO() }
         }

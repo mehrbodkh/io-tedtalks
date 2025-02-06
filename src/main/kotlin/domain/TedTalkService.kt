@@ -10,18 +10,15 @@ import java.net.URL
 class TedTalkService(
     private val repository: TedTalkRepository
 ) {
-    suspend fun run(): List<TedTalk> {
-        repository.remove(
-            TedTalk(
-                "Mehrbod",
-                "Mehrbod",
-                "12-12-2012",
-                1000L,
-                1000L,
-                "https://google.com/"
-            )
-        )
-        return repository.getTedTalks()
+    suspend fun getTedTalks(authorsName: String?) = repository.getTedTalks()
+        .filter { authorsName == null || it.author?.contains(authorsName, true) == true }
+
+    suspend fun addTedTalk(tedTalk: TedTalk) {
+        repository.add(tedTalk)
+    }
+
+    suspend fun removeTedTalk(tedTalk: TedTalk) {
+        repository.remove(tedTalk)
     }
 
     private fun readDataFromFile(fileName: String) = DataFrame.readCSV(fileName).map {

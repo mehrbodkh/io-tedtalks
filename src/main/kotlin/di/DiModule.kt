@@ -12,7 +12,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val diModule = module {
-    single { DataFrame.Companion }
+    single<DataFrame.Companion> { DataFrame.Companion }
     single<CoroutineDispatcher>(named("io_dispatcher")) { Dispatchers.IO }
     single<TedTalkDataSource>(named("in_memory")) { InMemoryTedTalkDataSource() }
     single<TedTalkDataSource>(named("persistent")) {
