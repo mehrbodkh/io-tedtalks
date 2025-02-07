@@ -76,16 +76,42 @@ class ApplicationTest {
                 setBody(it)
             }
         }
-        val response = client.get("/top_talks")
+        val response = client.get("/talks/top_talks")
 
-        assertEquals(getSampleData().reversed(), response.body())
+        assertEquals(getSampleData().reversed(), response.body<List<TedTalk>>().distinct())
+    }
+
+    @Test
+    fun `should get top talk per year`() = testApplication {
+        environment {
+            config = ApplicationConfig("application-testing.yaml")
+        }
+        val client = createClient {
+            this.install(ContentNegotiation) {
+                json()
+            }
+        }
+        getSampleData().forEach {
+            client.post("/talks/add") {
+                header(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(it)
+            }
+        }
+        val response = client.get("/talks/top_per_year")
+
+        assertEquals(
+            listOf(
+                mapOf("2011" to getSampleData().first()),
+                mapOf("2013" to getSampleData().last())
+            ), response.body<List<Map<String, TedTalk>>>()
+        )
     }
 
     fun getSampleData() = listOf<TedTalk>(
         TedTalk(
             "sample_title",
             "sample_author",
-            "11-11-2011",
+            "September 2011",
             1000L,
             1000L,
             "https://sample_link.com",
@@ -93,7 +119,7 @@ class ApplicationTest {
         TedTalk(
             "sample_title_2",
             "sample_author_2",
-            "12-11-2013",
+            "May 2013",
             12000L,
             12000L,
             "https://sample_link.com",
@@ -101,7 +127,7 @@ class ApplicationTest {
         TedTalk(
             "sample_title_3",
             "sample_author_3",
-            "13-11-2013",
+            "August 2013",
             14000L,
             12000L,
             "https://sample_link.com",
