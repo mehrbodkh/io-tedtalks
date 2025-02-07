@@ -1,9 +1,10 @@
 package com.mehrbod.data.datasource
 
+import co.touchlab.stately.collections.ConcurrentMutableList
 import com.mehrbod.data.model.TedTalkDto
 
 class InMemoryTedTalkDataSource : TedTalkDataSource {
-    private val tedTalks: MutableList<TedTalkDto> = mutableListOf()
+    private val tedTalks: MutableList<TedTalkDto> = ConcurrentMutableList()
 
     override suspend fun fetchAll(): List<TedTalkDto> {
         return tedTalks
