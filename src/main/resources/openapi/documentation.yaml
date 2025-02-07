@@ -1,23 +1,107 @@
-openapi: "3.0.3"
+openapi: 3.0.3
 info:
-  title: "Application API"
-  description: "Application API"
-  version: "1.0.0"
+  title: Ted Talks API
+  description: API for managing TED Talks.
+  version: 1.0.0
 servers:
-  - url: "http://0.0.0.0:8080"
+  - url: http://localhost:8080
 paths:
-  /:
+  /talks:
     get:
-      description: "Hello World!"
+      summary: Get TED Talks
+      description: Retrieve a list of TED Talks, optionally filtered by author.
+      parameters:
+        - name: author
+          in: query
+          description: Author name to filter TED Talks.
+          required: false
+          schema:
+            type: string
       responses:
-        "200":
-          description: "OK"
+        '200':
+          description: A list of TED Talks
           content:
-            text/plain:
+            application/json:
               schema:
-                type: "string"
-              examples:
-                Example#1:
-                  value: "Hello World!"
+                type: array
+                items:
+                  $ref: '#/components/schemas/TedTalk'
+  /talks/add:
+    post:
+      summary: Add a TED Talk
+      description: Adds a new TED Talk to the system.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TedTalk'
+      responses:
+        '201':
+          description: TED Talk added successfully
+  /talks/remove:
+    post:
+      summary: Remove a TED Talk
+      description: Removes an existing TED Talk.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TedTalk'
+      responses:
+        '200':
+          description: TED Talk removed successfully
+  /talks/top_talks:
+    get:
+      summary: Get Top TED Talks
+      description: Retrieve the top TED Talks based on likes.
+      parameters:
+        - name: n
+          in: query
+          description: Number of top TED Talks to retrieve (default 10).
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: A list of top TED Talks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TedTalk'
+  /talks/top_per_year:
+    get:
+      summary: Get Top TED Talks Per Year
+      description: Retrieve the top TED Talk for each year.
+      responses:
+        '200':
+          description: A list of top TED Talks per year
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TedTalk'
 components:
-  schemas: {}
+  schemas:
+    TedTalk:
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+          nullable: true
+        date:
+          type: string
+        views:
+          type: integer
+          nullable: true
+        likes:
+          type: integer
+        link:
+          type: string

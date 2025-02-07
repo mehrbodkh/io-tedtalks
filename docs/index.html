@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Application API</title>
+  <title>Ted Talks API</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8" />
@@ -689,6 +689,31 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+            defs["TedTalk"] = {
+  "type" : "object",
+  "properties" : {
+    "title" : {
+      "type" : "string"
+    },
+    "author" : {
+      "type" : "string",
+      "nullable" : true
+    },
+    "date" : {
+      "type" : "string"
+    },
+    "views" : {
+      "type" : "integer",
+      "nullable" : true
+    },
+    "likes" : {
+      "type" : "integer"
+    },
+    "link" : {
+      "type" : "string"
+    }
+  }
+};
   </script>
 
   <div class="container-fluid">
@@ -706,8 +731,20 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="rootGet" class="">
-                      <a href="#api-Default-rootGet">rootGet</a>
+                    <li data-group="Default" data-name="talksAddPost" class="">
+                      <a href="#api-Default-talksAddPost">talksAddPost</a>
+                    </li>
+                    <li data-group="Default" data-name="talksGet" class="">
+                      <a href="#api-Default-talksGet">talksGet</a>
+                    </li>
+                    <li data-group="Default" data-name="talksRemovePost" class="">
+                      <a href="#api-Default-talksRemovePost">talksRemovePost</a>
+                    </li>
+                    <li data-group="Default" data-name="talksTopPerYearGet" class="">
+                      <a href="#api-Default-talksTopPerYearGet">talksTopPerYearGet</a>
+                    </li>
+                    <li data-group="Default" data-name="talksTopTalksGet" class="">
+                      <a href="#api-Default-talksTopTalksGet">talksTopTalksGet</a>
                     </li>
           </ul>
         </nav>
@@ -715,7 +752,7 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>Application API</h1>
+            <h1>Ted Talks API</h1>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -724,49 +761,869 @@
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>Application API</div>
+            <div>API for managing TED Talks.</div>
           </div>
         </div>
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-rootGet">
-                      <article id="api-Default-rootGet-0" data-group="User" data-name="rootGet" data-version="0">
+                    <div id="api-Default-talksAddPost">
+                      <article id="api-Default-talksAddPost-0" data-group="User" data-name="talksAddPost" data-version="0">
                         <div class="pull-left">
-                          <h1>rootGet</h1>
-                          <p></p>
+                          <h1>talksAddPost</h1>
+                          <p>Add a TED Talk</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Hello World!</p>
+                        <p class="marked">Adds a new TED Talk to the system.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/talks/add</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-rootGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-rootGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-rootGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-rootGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-rootGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-talksAddPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-talksAddPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-talksAddPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksAddPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-talksAddPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-talksAddPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksAddPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-talksAddPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-talksAddPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-talksAddPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-talksAddPost-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-rootGet-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: text/plain"\
-"http://0.0.0.0:8080/"</code></pre>
+                          <div class="tab-pane active" id="examples-Default-talksAddPost-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Content-Type: application/json"\
+"http://localhost:8080/talks/add"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-rootGet-0-java">
+                          <div class="tab-pane" id="examples-Default-talksAddPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        TedTalk body = ; // TedTalk | 
+        try {
+            apiInstance.talksAddPost(body);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#talksAddPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-talksAddPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        TedTalk body = ; // TedTalk | 
+        try {
+            apiInstance.talksAddPost(body);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#talksAddPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-talksAddPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-talksAddPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">TedTalk *body = ; // 
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Add a TED Talk
+[apiInstance talksAddPostWith:body
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksAddPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var TedTalksApi = require('ted_talks_api');
+
+var api = new TedTalksApi.DefaultApi()
+var body = ; // {{TedTalk}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.talksAddPost(body, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-talksAddPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-talksAddPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class talksAddPostExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var body = new TedTalk(); // TedTalk | 
+
+            try
+            {
+                // Add a TED Talk
+                apiInstance.talksAddPost(body);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.talksAddPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksAddPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$body = ; // TedTalk | 
+
+try {
+    $api_instance->talksAddPost($body);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->talksAddPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksAddPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $body = WWW::SwaggerClient::Object::TedTalk->new(); # TedTalk | 
+
+eval { 
+    $api_instance->talksAddPost(body => $body);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->talksAddPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksAddPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+body =  # TedTalk | 
+
+try: 
+    # Add a TED Talk
+    api_instance.talks_add_post(body)
+except ApiException as e:
+    print("Exception when calling DefaultApi->talksAddPost: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/TedTalk"
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_talksAddPost_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_talksAddPost_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 201 - TED Talk added successfully </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-talksGet">
+                      <article id="api-Default-talksGet-0" data-group="User" data-name="talksGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>talksGet</h1>
+                          <p>Get TED Talks</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Retrieve a list of TED Talks, optionally filtered by author.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/talks</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-talksGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-talksGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-talksGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-talksGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-talksGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-talksGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-talksGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-talksGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-talksGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-talksGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"http://localhost:8080/talks?author="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-talksGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String author = author_example; // String | Author name to filter TED Talks.
+        try {
+            array[TedTalk] result = apiInstance.talksGet(author);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#talksGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-talksGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String author = author_example; // String | Author name to filter TED Talks.
+        try {
+            array[TedTalk] result = apiInstance.talksGet(author);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#talksGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-talksGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-talksGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *author = author_example; // Author name to filter TED Talks. (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Get TED Talks
+[apiInstance talksGetWith:author
+              completionHandler: ^(array[TedTalk] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var TedTalksApi = require('ted_talks_api');
+
+var api = new TedTalksApi.DefaultApi()
+var opts = { 
+  'author': author_example // {{String}} Author name to filter TED Talks.
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.talksGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-talksGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-talksGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class talksGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var author = author_example;  // String | Author name to filter TED Talks. (optional) 
+
+            try
+            {
+                // Get TED Talks
+                array[TedTalk] result = apiInstance.talksGet(author);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.talksGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$author = author_example; // String | Author name to filter TED Talks.
+
+try {
+    $result = $api_instance->talksGet($author);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->talksGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $author = author_example; # String | Author name to filter TED Talks.
+
+eval { 
+    my $result = $api_instance->talksGet(author => $author);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->talksGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+author = author_example # String | Author name to filter TED Talks. (optional)
+
+try: 
+    # Get TED Talks
+    api_response = api_instance.talks_get(author=author)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->talksGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">author</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_talksGet_author">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Author name to filter TED Talks.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - A list of TED Talks </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-talksGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-talksGet-200-schema">
+                                  <div id='responses-talksGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "A list of TED Talks",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/TedTalk"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-talksGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-talksGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-talksGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-talksRemovePost">
+                      <article id="api-Default-talksRemovePost-0" data-group="User" data-name="talksRemovePost" data-version="0">
+                        <div class="pull-left">
+                          <h1>talksRemovePost</h1>
+                          <p>Remove a TED Talk</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Removes an existing TED Talk.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/talks/remove</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-talksRemovePost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-talksRemovePost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-talksRemovePost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksRemovePost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-talksRemovePost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-talksRemovePost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksRemovePost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-talksRemovePost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-talksRemovePost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-talksRemovePost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-talksRemovePost-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-talksRemovePost-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Content-Type: application/json"\
+"http://localhost:8080/talks/remove"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-talksRemovePost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        TedTalk body = ; // TedTalk | 
+        try {
+            apiInstance.talksRemovePost(body);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#talksRemovePost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-talksRemovePost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        TedTalk body = ; // TedTalk | 
+        try {
+            apiInstance.talksRemovePost(body);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#talksRemovePost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-talksRemovePost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-talksRemovePost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">TedTalk *body = ; // 
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Remove a TED Talk
+[apiInstance talksRemovePostWith:body
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksRemovePost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var TedTalksApi = require('ted_talks_api');
+
+var api = new TedTalksApi.DefaultApi()
+var body = ; // {{TedTalk}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.talksRemovePost(body, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-talksRemovePost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-talksRemovePost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class talksRemovePostExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var body = new TedTalk(); // TedTalk | 
+
+            try
+            {
+                // Remove a TED Talk
+                apiInstance.talksRemovePost(body);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.talksRemovePost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksRemovePost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$body = ; // TedTalk | 
+
+try {
+    $api_instance->talksRemovePost($body);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->talksRemovePost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksRemovePost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $body = WWW::SwaggerClient::Object::TedTalk->new(); # TedTalk | 
+
+eval { 
+    $api_instance->talksRemovePost(body => $body);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->talksRemovePost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksRemovePost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+body =  # TedTalk | 
+
+try: 
+    # Remove a TED Talk
+    api_instance.talks_remove_post(body)
+except ApiException as e:
+    print("Exception when calling DefaultApi->talksRemovePost: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/TedTalk"
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_talksRemovePost_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_talksRemovePost_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - TED Talk removed successfully </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-talksTopPerYearGet">
+                      <article id="api-Default-talksTopPerYearGet-0" data-group="User" data-name="talksTopPerYearGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>talksTopPerYearGet</h1>
+                          <p>Get Top TED Talks Per Year</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Retrieve the top TED Talk for each year.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/talks/top_per_year</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-talksTopPerYearGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-talksTopPerYearGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-talksTopPerYearGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksTopPerYearGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-talksTopPerYearGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-talksTopPerYearGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksTopPerYearGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-talksTopPerYearGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-talksTopPerYearGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-talksTopPerYearGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-talksTopPerYearGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-talksTopPerYearGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"http://localhost:8080/talks/top_per_year"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -781,17 +1638,17 @@ public class DefaultApiExample {
         
         DefaultApi apiInstance = new DefaultApi();
         try {
-            'String' result = apiInstance.rootGet();
+            array[TedTalk] result = apiInstance.talksTopPerYearGet();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#rootGet");
+            System.err.println("Exception when calling DefaultApi#talksTopPerYearGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-rootGet-0-android">
+                          <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -799,25 +1656,26 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         try {
-            'String' result = apiInstance.rootGet();
+            array[TedTalk] result = apiInstance.talksTopPerYearGet();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#rootGet");
+            System.err.println("Exception when calling DefaultApi#talksTopPerYearGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-rootGet-0-groovy">
+  <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-rootGet-0-objc">
+                            <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance rootGetWithCompletionHandler: 
-              ^('String' output, NSError* error) {
+// Get Top TED Talks Per Year
+[apiInstance talksTopPerYearGetWithCompletionHandler: 
+              ^(array[TedTalk] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -828,10 +1686,10 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-rootGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var ApplicationApi = require('application_api');
+                            <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var TedTalksApi = require('ted_talks_api');
 
-var api = new ApplicationApi.DefaultApi()
+var api = new TedTalksApi.DefaultApi()
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -839,14 +1697,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.rootGet(callback);
+api.talksTopPerYearGet(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-rootGet-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-rootGet-0-csharp">
+                            <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -855,7 +1713,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class rootGetExample
+    public class talksTopPerYearGetExample
     {
         public void main()
         {
@@ -864,12 +1722,13 @@ namespace Example
 
             try
             {
-                'String' result = apiInstance.rootGet();
+                // Get Top TED Talks Per Year
+                array[TedTalk] result = apiInstance.talksTopPerYearGet();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.rootGet: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.talksTopPerYearGet: " + e.Message );
             }
         }
     }
@@ -877,22 +1736,22 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-rootGet-0-php">
+                            <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
 try {
-    $result = $api_instance->rootGet();
+    $result = $api_instance->talksTopPerYearGet();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->rootGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->talksTopPerYearGet: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-rootGet-0-perl">
+                            <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -900,15 +1759,15 @@ use WWW::SwaggerClient::DefaultApi;
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 
 eval { 
-    my $result = $api_instance->rootGet();
+    my $result = $api_instance->talksTopPerYearGet();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->rootGet: $@\n";
+    warn "Exception when calling DefaultApi->talksTopPerYearGet: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-rootGet-0-python">
+                            <div class="tab-pane" id="examples-Default-talksTopPerYearGet-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -919,10 +1778,11 @@ from pprint import pprint
 api_instance = swagger_client.DefaultApi()
 
 try: 
-    api_response = api_instance.root_get()
+    # Get Top TED Talks Per Year
+    api_response = api_instance.talks_top_per_year_get()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->rootGet: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->talksTopPerYearGet: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -934,37 +1794,35 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
+                            <h3> Status: 200 - A list of top TED Talks per year </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-rootGet-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-talksTopPerYearGet-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-rootGet-200-schema">
-                                  <div id='responses-rootGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-talksTopPerYearGet-200-schema">
+                                  <div id='responses-talksTopPerYearGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "OK",
+  "description" : "A list of top TED Talks per year",
   "content" : {
-    "text/plain" : {
+    "application/json" : {
       "schema" : {
-        "type" : "string",
-        "x-content-type" : "text/plain"
-      },
-      "examples" : {
-        "Example#1" : {
-          "value" : "Hello World!"
-        }
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/TedTalk"
+        },
+        "x-content-type" : "application/json"
       }
     }
   }
 };
-                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
@@ -977,14 +1835,312 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-rootGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-rootGet-200-schema-200');
+                                        $('#responses-talksTopPerYearGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-talksTopPerYearGet-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-rootGet-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-talksTopPerYearGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-talksTopTalksGet">
+                      <article id="api-Default-talksTopTalksGet-0" data-group="User" data-name="talksTopTalksGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>talksTopTalksGet</h1>
+                          <p>Get Top TED Talks</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Retrieve the top TED Talks based on likes.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/talks/top_talks</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-talksTopTalksGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-talksTopTalksGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-talksTopTalksGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksTopTalksGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-talksTopTalksGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-talksTopTalksGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-talksTopTalksGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-talksTopTalksGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-talksTopTalksGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-talksTopTalksGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-talksTopTalksGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-talksTopTalksGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"http://localhost:8080/talks/top_talks?n="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        Integer n = 56; // Integer | Number of top TED Talks to retrieve (default 10).
+        try {
+            array[TedTalk] result = apiInstance.talksTopTalksGet(n);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#talksTopTalksGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Integer n = 56; // Integer | Number of top TED Talks to retrieve (default 10).
+        try {
+            array[TedTalk] result = apiInstance.talksTopTalksGet(n);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#talksTopTalksGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *n = 56; // Number of top TED Talks to retrieve (default 10). (optional) (default to 10)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Get Top TED Talks
+[apiInstance talksTopTalksGetWith:n
+              completionHandler: ^(array[TedTalk] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var TedTalksApi = require('ted_talks_api');
+
+var api = new TedTalksApi.DefaultApi()
+var opts = { 
+  'n': 56 // {{Integer}} Number of top TED Talks to retrieve (default 10).
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.talksTopTalksGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-talksTopTalksGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class talksTopTalksGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var n = 56;  // Integer | Number of top TED Talks to retrieve (default 10). (optional)  (default to 10)
+
+            try
+            {
+                // Get Top TED Talks
+                array[TedTalk] result = apiInstance.talksTopTalksGet(n);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.talksTopTalksGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$n = 56; // Integer | Number of top TED Talks to retrieve (default 10).
+
+try {
+    $result = $api_instance->talksTopTalksGet($n);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->talksTopTalksGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $n = 56; # Integer | Number of top TED Talks to retrieve (default 10).
+
+eval { 
+    my $result = $api_instance->talksTopTalksGet(n => $n);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->talksTopTalksGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-talksTopTalksGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+n = 56 # Integer | Number of top TED Talks to retrieve (default 10). (optional) (default to 10)
+
+try: 
+    # Get Top TED Talks
+    api_response = api_instance.talks_top_talks_get(n=n)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->talksTopTalksGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">n</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_talksTopTalksGet_n">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Number of top TED Talks to retrieve (default 10).
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - A list of top TED Talks </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-talksTopTalksGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-talksTopTalksGet-200-schema">
+                                  <div id='responses-talksTopTalksGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "A list of top TED Talks",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/TedTalk"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-talksTopTalksGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-talksTopTalksGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-talksTopTalksGet-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
