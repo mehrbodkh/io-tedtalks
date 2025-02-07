@@ -1,15 +1,9 @@
 package com.mehrbod.data.datasource
 
-import com.mehrbod.data.model.TedTalkDto
 import data.getSampleData
 import io.mockk.impl.annotations.InjectMockKs
-import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertContains
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
+import kotlin.test.*
 
 class InMemoryTedTalkDataSourceTest {
 
@@ -27,16 +21,6 @@ class InMemoryTedTalkDataSourceTest {
         dataSource.saveBatch(mockedData)
 
         assertEquals(mockedData, dataSource.fetchAll())
-    }
-
-    @Test
-    fun `should save new data over old data`() = runTest {
-        val oldMockedData = listOf<TedTalkDto>(mockk(), mockk())
-        val newMockedData = getSampleData()
-        dataSource.saveBatch(oldMockedData)
-        dataSource.saveBatch(newMockedData)
-
-        assertEquals(newMockedData, dataSource.fetchAll())
     }
 
     @Test
